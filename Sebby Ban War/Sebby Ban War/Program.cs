@@ -27,17 +27,17 @@ namespace Sebby_Ban_War
         private static void Game_OnGameLoad(EventArgs args)
         {
             Tahoma13 = new Font(Drawing.Direct3DDevice, new FontDescription
-            { FaceName = "Tahoma", Height = 14, OutputPrecision = FontPrecision.Default, Quality = FontQuality.ClearType });
+            { FaceName = "Tahoma", Height = 12, OutputPrecision = FontPrecision.Default, Quality = FontQuality.ClearType });
 
-            Config = new Menu("SBW - Sebby Ban War", "SBW - Sebby Ban War", true);
+            Config = new Menu("DWBB - Test Version 0.7v", "DWBB - Test Version 0.7v", true);
             Config.AddToMainMenu();
             Config.AddItem(new MenuItem("enable", "ENABLE").SetValue(true));
-            Config.AddItem(new MenuItem("ClickTime", "Minimum Click Time (100)").SetValue(new Slider(100, 300, 0))).SetTooltip("0 - 100 scripter, 100 - 200 pro player, 200+ normal player");
-            Config.AddItem(new MenuItem("showCPS", "Show action per sec").SetValue(true));
+            Config.AddItem(new MenuItem("ClickTime", "Process Windup").SetValue(new Slider(100, 200, 0))).SetTooltip("Recomended 120");
+            Config.AddItem(new MenuItem("showCPS", "Show Exposition Ratio").SetValue(true));
 
-            Config.SubMenu("Advance").AddItem(new MenuItem("blockOut", "Block targeted action out screen").SetValue(true));
-            Config.SubMenu("Advance").AddItem(new MenuItem("cut", "CUT SKILLSHOTS").SetValue(true));
-            Config.SubMenu("Advance").AddItem(new MenuItem("skill", "BLOCK inhuman skill cast").SetValue(true));
+            Config.SubMenu("More").AddItem(new MenuItem("blockOut", "Block TAOS AKA OBV").SetValue(true));
+            Config.SubMenu("More").AddItem(new MenuItem("cut", "HUMAN ANGLES").SetValue(true));
+            Config.SubMenu("More").AddItem(new MenuItem("skill", "Block Packet Tracker").SetValue(true));
             Obj_AI_Base.OnNewPath += Obj_AI_Base_OnNewPath;
             Obj_AI_Base.OnIssueOrder += Obj_AI_Base_OnIssueOrder;
             Spellbook.OnCastSpell += Spellbook_OnCastSpell;
@@ -150,7 +150,7 @@ namespace Sebby_Ban_War
 
             if (args.Order == GameObjectOrder.AttackUnit && args.Target is Obj_AI_Minion && LastType == 0 && Utils.TickCount - LastMouseTime > mouseDis / 15)
             {
-                //Console.WriteLine("SBW farm protection");
+                //Console.WriteLine("DWBB farm protection");
                 LastType = 1;
                 LastMouseTime = Utils.TickCount;
                 LastMousePos = screenPos;
@@ -199,7 +199,7 @@ namespace Sebby_Ban_War
                 else if (PathPerSecInfo > 8)
                     color = Color.OrangeRed;
 
-                DrawFontTextScreen(Tahoma13, "SBW Server action per sec: " + PathPerSecInfo, h, w, color);
+                DrawFontTextScreen(Tahoma13, "Exposition Ratio: " + PathPerSecInfo, h, w, color);
             }
         }
 
